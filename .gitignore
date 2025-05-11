@@ -1,0 +1,5 @@
+# Ignore configuration files
+.env
+node_modules/
+package-lock.json
+*.log
