@@ -1,0 +1,39 @@
+@startuml DaySave
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Guest" as Guest 
+actor "User" as User  
+actor "Admin" as Admin
+
+rectangle "DaySave.App" {
+  (Register)
+  (EmailLogin) 
+  (OAuthLogin)
+  (Authenticate)
+  (ResetPassword)
+  (Logout)
+  (SubmitContent)
+  (ShareContent)
+  (ViewContent)
+
+  Authenticate <|-- EmailLogin : <<extend>>
+  Authenticate <|-- OAuthLogin : <<extend>>
+}
+
+' Position Admin on the right with separate spacing block
+rectangle "" {
+  Admin --> Authenticate
+  Admin --> ResetPassword
+  Admin --> Logout
+}
+Guest --> Register
+Guest --> Authenticate
+Guest --> ResetPassword
+
+User --> Authenticate
+User --> ResetPassword
+User --> Logout
+
+@enduml
+
